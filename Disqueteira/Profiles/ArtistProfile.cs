@@ -1,0 +1,14 @@
+using AutoMapper;
+using Disqueteira.Data.Dtos;
+using Disqueteira.Models;
+
+namespace Disqueteira.Profiles;
+
+public class ArtistProfile : Profile
+{
+    public ArtistProfile()
+    {
+        CreateMap<CreateArtistDto, Artist>();
+        CreateMap<Artist, ReadArtistDto>();
+    }
+}

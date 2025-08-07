@@ -1,0 +1,6 @@
+@Disqueteira_HostAddress = http://localhost:5100
+
+GET {{Disqueteira_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
