@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Connection String
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-
 // Database Context
 builder.Services.AddDbContext<DisqueteiraContext>(opts =>
     opts.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -24,7 +23,7 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 // builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "FilmesAPI", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Disqueteira", Version = "v1" });
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
