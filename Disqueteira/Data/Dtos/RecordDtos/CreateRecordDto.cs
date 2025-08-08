@@ -12,4 +12,6 @@ public class CreateRecordDto
     public string Name { get; set; }
 
     public int Year { get; set; }
+
+    [Required] public int ArtistId { get; set; }
 }

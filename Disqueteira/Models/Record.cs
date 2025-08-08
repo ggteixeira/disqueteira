@@ -10,4 +10,5 @@ public class Record
 
     public int Year { get; set; }
 
+    public int ArtistId { get; set; }
 }
