@@ -13,7 +13,6 @@ public class ArtistController : ControllerBase
     private DisqueteiraContext _context;
     private IMapper _mapper;
 
-
     public ArtistController(DisqueteiraContext context, IMapper mapper)
     {
         _context = context;
