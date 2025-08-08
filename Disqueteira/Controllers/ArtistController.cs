@@ -2,6 +2,7 @@ using AutoMapper;
 using Disqueteira.Data;
 using Disqueteira.Data.Dtos;
 using Disqueteira.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Disqueteira.Controllers;
@@ -19,25 +20,22 @@ public class ArtistController : ControllerBase
         _mapper = mapper;
     }
 
-
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public IActionResult AddArtist([FromBody] CreateArtistDto artistDto)
     {
         Artist artist = _mapper.Map<Artist>(artistDto);
-
         _context.Artists.Add(artist);
         _context.SaveChanges();
+
         return CreatedAtAction(nameof(GetArtistById), new { id = artist.Id }, artist);
     }
-
 
     [HttpGet]
     public IEnumerable<ReadArtistDto> GetArtists([FromQuery] int skip = 0, [FromQuery] int take = 5)
     {
         return _mapper.Map<List<ReadArtistDto>>(_context.Artists.Skip(skip).Take(take));
     }
-
 
     [HttpGet("{id}")]
     public IActionResult GetArtistById(int id)
@@ -46,5 +44,25 @@ public class ArtistController : ControllerBase
         if (artist == null) return NotFound();
         var artistDto = _mapper.Map<ReadArtistDto>(artist);
         return Ok(artistDto);
+    }
+
+    [HttpPatch("{id}")]
+    public IActionResult RenameArtist(int id, JsonPatchDocument<UpdateArtistDto> patch)
+    {
+        var artist = _context.Artists.FirstOrDefault(artist => artist.Id == id);
+        if (artist == null) return NotFound();
+
+        var artistToBeRenamed = _mapper.Map<UpdateArtistDto>(artist);
+
+        patch.ApplyTo(artistToBeRenamed, ModelState);
+
+        if (!TryValidateModel(artistToBeRenamed))
+        {
+            return ValidationProblem(ModelState);
+        }
+
+        _mapper.Map(artistToBeRenamed, artist);
+        _context.SaveChanges();
+        return NoContent();
     }
 }
