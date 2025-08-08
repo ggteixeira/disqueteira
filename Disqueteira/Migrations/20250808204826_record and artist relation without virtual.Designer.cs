@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Disqueteira.Migrations
 {
     [DbContext(typeof(DisqueteiraContext))]
-    [Migration("20250807220754_INITIAL MIGRATION")]
-    partial class INITIALMIGRATION
+    [Migration("20250808204826_record and artist relation without virtual")]
+    partial class recordandartistrelationwithoutvirtual
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,6 +42,29 @@ namespace Disqueteira.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Artists");
+                });
+
+            modelBuilder.Entity("Disqueteira.Models.Record", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Artist")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Records");
                 });
 #pragma warning restore 612, 618
         }
