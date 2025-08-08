@@ -10,6 +10,6 @@ public class CreateRecordDto
 
     [Required(ErrorMessage = "Record name is required")]
     public string Name { get; set; }
-    
+
     public int Year { get; set; }
 }
