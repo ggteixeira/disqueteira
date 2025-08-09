@@ -5,6 +5,7 @@ using Disqueteira.Data.Dtos.RecordDtos;
 using Disqueteira.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Disqueteira.Controllers;
 
@@ -47,6 +48,25 @@ public class RecordController : ControllerBase
         return Ok(recordDto);
     }
 
+    [HttpGet("/GetRecordByArtistId/{id}")]
+    public async Task<IActionResult> GetRecordByArtistId(int id)
+    {
+        var queryRecord = from record in _context.Records
+            join artist in _context.Artists on record.ArtistId equals artist.Id
+            where artist.Id == id
+            select new
+            {
+                recordName = record.Name,
+                artistName = artist.Name,
+                year = record.Year,
+            };
+
+        var results = await queryRecord.ToListAsync();
+
+        return Ok(results);
+    }
+
+
     // [HttpPatch("{id}")]
     // public IActionResult RenameRecord(int id, JsonPatchDocument<UpdateRecordDto> patch)
     // {
@@ -66,7 +86,7 @@ public class RecordController : ControllerBase
     //     _context.SaveChanges();
     //     return NoContent();
     // }
-    
+
     [HttpDelete("{id}")]
     public IActionResult DeleteRecord(int id)
     {
@@ -77,5 +97,4 @@ public class RecordController : ControllerBase
         _context.SaveChanges();
         return NoContent();
     }
-    
 }
