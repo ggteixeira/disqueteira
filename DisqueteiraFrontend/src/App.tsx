@@ -1,14 +1,13 @@
 import { BrowserRouter } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
-import Routing from './routes/Routing';
-import ResponsiveDrawer from './components/ResponsibleDrawer';
+import MiniDrawer from './components/MuiResponsibleDrawer';
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
         <CssBaseline />
-        <ResponsiveDrawer />
+        <MiniDrawer />
       </BrowserRouter>
     </>
   );
