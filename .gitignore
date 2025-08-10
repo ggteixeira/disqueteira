@@ -54,3 +54,4 @@ TestResult.xml
 nunit-*.xml
 .fake
 .idea/
+.DS_Store
