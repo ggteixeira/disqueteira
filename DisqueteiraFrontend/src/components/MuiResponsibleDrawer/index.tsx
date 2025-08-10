@@ -104,7 +104,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function MiniDrawer() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -113,6 +113,9 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const primaryItemsList = ['Inbox', 'Starred', 'Send email', 'Drafts'];
+  const secondaryItemsList = ['All mail', 'Trash', 'Spam'];
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -146,7 +149,7 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {primaryItemsList.map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={[
@@ -198,7 +201,7 @@ export default function MiniDrawer() {
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {secondaryItemsList.map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={[
