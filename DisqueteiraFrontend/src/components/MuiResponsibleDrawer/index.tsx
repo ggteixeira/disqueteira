@@ -3,6 +3,7 @@ import { Album, Home, MicExternalOn, Person2, SearchOutlined } from '@mui/icons-
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Button } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,6 +19,7 @@ import { CSSObject, styled, Theme, useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -175,112 +177,124 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {primaryItemsList.map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                  },
-                  open
-                    ? {
-                        justifyContent: 'initial',
-                      }
-                    : {
-                        justifyContent: 'center',
-                      },
-                ]}
-              >
-                <ListItemIcon
+            <ListItem
+              key={text}
+              disablePadding
+              sx={{ display: 'block', 'a, svg': { color: 'inherit', textDecoration: 'none' } }}
+            >
+              <Link key={text} to={text.toLowerCase()}>
+                <ListItemButton
                   sx={[
                     {
-                      minWidth: 0,
-                      justifyContent: 'center',
+                      minHeight: 48,
+                      px: 2.5,
                     },
                     open
                       ? {
-                          mr: 3,
+                          justifyContent: 'initial',
                         }
                       : {
-                          mr: 'auto',
+                          justifyContent: 'center',
                         },
                   ]}
                 >
-                  {primaryIconsList.map(({ iconName, icon }) => {
-                    if (iconName === text) {
-                      return <Fragment key={index}>{icon}</Fragment>;
-                    }
-                  })}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  sx={[
-                    open
-                      ? {
-                          opacity: 1,
-                        }
-                      : {
-                          opacity: 0,
-                        },
-                  ]}
-                />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={[
+                      {
+                        minWidth: 0,
+                        justifyContent: 'center',
+                      },
+                      open
+                        ? {
+                            mr: 3,
+                          }
+                        : {
+                            mr: 'auto',
+                          },
+                    ]}
+                  >
+                    {primaryIconsList.map(({ iconName, icon }) => {
+                      if (iconName === text) {
+                        return <Fragment key={index}>{icon}</Fragment>;
+                      }
+                    })}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={text}
+                    sx={[
+                      open
+                        ? {
+                            opacity: 1,
+                          }
+                        : {
+                            opacity: 0,
+                          },
+                    ]}
+                  />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
           {secondaryItemsList.map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                  },
-                  open
-                    ? {
-                        justifyContent: 'initial',
-                      }
-                    : {
-                        justifyContent: 'center',
-                      },
-                ]}
-              >
-                <ListItemIcon
+            <ListItem
+              key={text}
+              disablePadding
+              sx={{ display: 'block', 'a, svg': { color: 'inherit', textDecoration: 'none' } }}
+            >
+              <Link key={text} to={text.toLowerCase()}>
+                <ListItemButton
                   sx={[
                     {
-                      minWidth: 0,
-                      justifyContent: 'center',
+                      minHeight: 48,
+                      px: 2.5,
                     },
                     open
                       ? {
-                          mr: 3,
+                          justifyContent: 'initial',
                         }
                       : {
-                          mr: 'auto',
+                          justifyContent: 'center',
                         },
                   ]}
                 >
-                  {secondaryIconsList.map(({ iconName, icon }) => {
-                    if (iconName === text) {
-                      return <Fragment key={index}>{icon}</Fragment>;
-                    }
-                  })}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  sx={[
-                    open
-                      ? {
-                          opacity: 1,
-                        }
-                      : {
-                          opacity: 0,
-                        },
-                  ]}
-                />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={[
+                      {
+                        minWidth: 0,
+                        justifyContent: 'center',
+                      },
+                      open
+                        ? {
+                            mr: 3,
+                          }
+                        : {
+                            mr: 'auto',
+                          },
+                    ]}
+                  >
+                    {secondaryIconsList.map(({ iconName, icon }) => {
+                      if (iconName === text) {
+                        return <Fragment key={index}>{icon}</Fragment>;
+                      }
+                    })}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={text}
+                    sx={[
+                      open
+                        ? {
+                            opacity: 1,
+                          }
+                        : {
+                            opacity: 0,
+                          },
+                    ]}
+                  />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>
