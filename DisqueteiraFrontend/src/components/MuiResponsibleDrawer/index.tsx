@@ -1,9 +1,8 @@
 import Routing from '@/routes/Routing';
+import { Album, Home, MicExternalOn, Person2, SearchOutlined } from '@mui/icons-material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,7 +17,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { CSSObject, styled, Theme, useTheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
+import React, { Fragment } from 'react';
 
 const drawerWidth = 240;
 
@@ -114,8 +113,34 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-  const primaryItemsList = ['Inbox', 'Starred', 'Send email', 'Drafts'];
-  const secondaryItemsList = ['All mail', 'Trash', 'Spam'];
+  const primaryItemsList = ['Home', 'Login'];
+  const primaryIconsList = [
+    {
+      icon: <Home />,
+      iconName: primaryItemsList[0],
+    },
+    {
+      icon: <Person2 />,
+      iconName: primaryItemsList[1],
+    },
+  ];
+
+  const secondaryItemsList = ['Artists', 'Records', 'Search'];
+  const secondaryIconsList = [
+    {
+      icon: <MicExternalOn />,
+      iconName: secondaryItemsList[0],
+    },
+    {
+      icon: <Album />,
+      iconName: secondaryItemsList[1],
+    },
+
+    {
+      icon: <SearchOutlined />,
+      iconName: secondaryItemsList[2],
+    },
+  ];
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -181,7 +206,11 @@ export default function MiniDrawer() {
                         },
                   ]}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {primaryIconsList.map(({ iconName, icon }) => {
+                    if (iconName === text) {
+                      return <Fragment key={index}>{icon}</Fragment>;
+                    }
+                  })}
                 </ListItemIcon>
                 <ListItemText
                   primary={text}
@@ -233,7 +262,11 @@ export default function MiniDrawer() {
                         },
                   ]}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {secondaryIconsList.map(({ iconName, icon }) => {
+                    if (iconName === text) {
+                      return <Fragment key={index}>{icon}</Fragment>;
+                    }
+                  })}
                 </ListItemIcon>
                 <ListItemText
                   primary={text}
