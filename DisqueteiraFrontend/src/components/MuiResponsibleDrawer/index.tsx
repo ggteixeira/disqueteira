@@ -3,7 +3,6 @@ import { Album, Home, MicExternalOn, Person2, SearchOutlined } from '@mui/icons-
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Button } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -180,7 +179,10 @@ export default function MiniDrawer() {
             <ListItem
               key={text}
               disablePadding
-              sx={{ display: 'block', 'a, svg': { color: 'inherit', textDecoration: 'none' } }}
+              sx={{
+                display: 'block',
+                'a, svg': { color: 'inherit', textDecoration: 'none' },
+              }}
             >
               <Link key={text} to={text.toLowerCase()}>
                 <ListItemButton
