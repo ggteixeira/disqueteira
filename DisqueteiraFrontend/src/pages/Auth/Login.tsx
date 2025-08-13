@@ -1,56 +1,17 @@
-import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, Paper } from '@mui/material';
+import { Container } from '@mui/material';
+import LoginForm from './components/LoginForm';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // TODO: send login request to backend
-  };
-
+function Login() {
   return (
-    <Box
+    <Container
       sx={{
-        height: '100vh',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        // backgroundColor: '#f5f5f5',
+        justifyContent: 'space-evenly',
       }}
     >
-      <Paper elevation={3} sx={{ padding: 4, width: 350 }} component="form" onSubmit={handleSubmit}>
-        <Typography variant="h5" textAlign="center" gutterBottom>
-          Login
-        </Typography>
-
-        <TextField
-          fullWidth
-          label="Email"
-          type="email"
-          margin="normal"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <TextField
-          fullWidth
-          label="Password"
-          type="password"
-          margin="normal"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <Button fullWidth type="submit" variant="contained" sx={{ mt: 2 }}>
-          Sign In
-        </Button>
-      </Paper>
-    </Box>
+      <LoginForm />
+    </Container>
   );
-};
+}
 
 export default Login;
