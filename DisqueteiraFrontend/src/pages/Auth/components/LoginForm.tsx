@@ -5,7 +5,6 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    // watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -13,8 +12,6 @@ const LoginForm = () => {
       password: '',
     },
   });
-
-  // console.log(watch('email')); // you can watch individual input by pass the name of the input
 
   return (
     <Paper
