@@ -1,9 +1,14 @@
 import BasicTable from '@/components/BasicTable';
 import { useGetRecords } from '@/hooks/useGetRecords';
 import { Box, Container, Typography } from '@mui/material';
+import { useMemo } from 'react';
 
 const Records = () => {
   const { data: records, isLoading, isError, isFetched, error } = useGetRecords();
+
+  const excludedColumns = useMemo(() => {
+    return ['artistId'];
+  }, []);
 
   if (isLoading) {
     <Typography>Loading...</Typography>;
@@ -20,7 +25,7 @@ const Records = () => {
       </Box>
       {isFetched && (
         <Box>
-          <BasicTable records={records} />
+          <BasicTable excludedColumns={excludedColumns} rows={records} />
         </Box>
       )}
     </Container>
