@@ -1,6 +1,7 @@
 import { IRecords } from '@/types/records';
 import { capitalizeFirstLetter } from '@/utils/capitalize';
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
+import { splitPascalCase } from '@/utils/splitPascalCase';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { useCallback } from 'react';
 
 export default function RecordsTable({ rows, hiddenColumns }: { rows: IRecords[]; hiddenColumns?: string[] }) {
@@ -11,7 +12,7 @@ export default function RecordsTable({ rows, hiddenColumns }: { rows: IRecords[]
     if (!hiddenColumns) return pureColumns;
     if (hiddenColumns.length === 0) return pureColumns;
 
-    return filteredColumns;
+    return filteredColumns.map((columnName) => splitPascalCase(columnName));
   }, [filteredColumns, hiddenColumns, pureColumns]);
 
   return (
