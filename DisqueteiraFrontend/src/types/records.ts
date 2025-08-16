@@ -1,8 +1,8 @@
 export interface IRecords {
   id: string;
-  name: string;
-  year: number;
-  artistId: number;
+  artistName: string;
+  recordName: string;
+  recordYear: number;
 }
 
 export interface IArtists {

@@ -19,7 +19,7 @@ export default function RecordsTable({ rows, hiddenColumns }: { rows: IRecords[]
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            {['Record', 'Year', 'Artist Name'].map((col, index) => (
+            {columns().map((col, index) => (
               <TableCell key={index} align={index === 0 ? 'left' : 'right'}>
                 {capitalizeFirstLetter(col)}
               </TableCell>
@@ -27,23 +27,15 @@ export default function RecordsTable({ rows, hiddenColumns }: { rows: IRecords[]
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(
-            ({
-              record: {
-                name,
-                year,
-                artist: { name: artistName },
-              },
-            }) => (
-              <TableRow key={name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  {name}
-                </TableCell>
-                <TableCell align="right">{year}</TableCell>
-                <TableCell align="right">{artistName}</TableCell>
-              </TableRow>
-            ),
-          )}
+          {rows.map((row) => (
+            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableCell component="th" scope="row">
+                {row.recordName}
+              </TableCell>
+              <TableCell align="right">{row.artistName}</TableCell>
+              <TableCell align="right">{row.recordYear}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

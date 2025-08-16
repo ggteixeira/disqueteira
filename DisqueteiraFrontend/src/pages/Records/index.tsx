@@ -13,7 +13,7 @@ const Records = () => {
   } = useGetRecords();
 
   const hiddenColumns = useMemo(() => {
-    return ['artistId'];
+    return ['id'];
   }, []);
 
   if (isLoadingRecords) {
