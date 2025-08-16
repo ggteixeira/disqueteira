@@ -1,21 +1,27 @@
-import BasicTable from '@/components/BasicTable';
+import RecordsTable from '@/components/RecordsTable';
 import { useGetRecords } from '@/hooks/useGetRecords';
 import { Box, Container, Typography } from '@mui/material';
 import { useMemo } from 'react';
 
 const Records = () => {
-  const { data: records, isLoading, isError, isFetched, error } = useGetRecords();
+  const {
+    data: records,
+    isLoading: isLoadingRecords,
+    isError: isErrorRecords,
+    isFetched: isFetchedRecords,
+    error: errorRecords,
+  } = useGetRecords();
 
   const hiddenColumns = useMemo(() => {
     return ['artistId'];
   }, []);
 
-  if (isLoading) {
+  if (isLoadingRecords) {
     <Typography>Loading...</Typography>;
   }
 
-  if (isError) {
-    return <Typography>Error: {error.message}</Typography>;
+  if (isErrorRecords) {
+    return <Typography>Error: {errorRecords.message}</Typography>;
   }
 
   return (
@@ -23,9 +29,9 @@ const Records = () => {
       <Box mb={1}>
         <Typography variant="h1">Records</Typography>
       </Box>
-      {isFetched && (
+      {isFetchedRecords && (
         <Box>
-          <BasicTable hiddenColumns={hiddenColumns} rows={records} />
+          <RecordsTable hiddenColumns={hiddenColumns} rows={records} />
         </Box>
       )}
     </Container>
