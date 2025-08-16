@@ -48,8 +48,18 @@ public class RecordController : ControllerBase
                 artist => artist.Id,
                 (record, _) => new { record });
 
+        var query = from records in _context.Records
+            join artists in _context.Artists on records.ArtistId equals artists.Id
+            select new
+            {
+                records.Id,
+                RecordName = records.Name,
+                ArtistName = artists.Name,
+                RecordYear = records.Year
+            };
 
-        var results = queryRecord.ToList();
+
+        var results = query.ToList();
         return Ok(results);
     }
 
