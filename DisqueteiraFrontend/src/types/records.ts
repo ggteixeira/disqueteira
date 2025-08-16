@@ -4,3 +4,8 @@ export interface IRecords {
   year: number;
   artistId: number;
 }
+
+export interface IArtists {
+  id?: string;
+  name: string;
+}
