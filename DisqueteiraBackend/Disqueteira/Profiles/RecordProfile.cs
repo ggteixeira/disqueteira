@@ -13,5 +13,6 @@ public class RecordProfile : Profile
         // CreateMap<UpdateRecordDto, Record>();
         // CreateMap<Record, UpdateRecordDto>();
         CreateMap<Record, ReadRecordDto>();
+        CreateMap<Record, RecordsWithArtistsDto>();
     }
 }

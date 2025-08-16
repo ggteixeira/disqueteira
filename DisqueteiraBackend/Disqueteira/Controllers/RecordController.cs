@@ -39,6 +39,20 @@ public class RecordController : ControllerBase
         return _mapper.Map<List<ReadRecordDto>>(_context.Records.Skip(skip).Take(take));
     }
 
+    [HttpGet("/GetRecordsWithArtists")]
+    public OkObjectResult GetRecordsWithArtists()
+    {
+        var queryRecord = _context.Records
+            .Join(_context.Artists,
+                record => record.ArtistId,
+                artist => artist.Id,
+                (record, _) => new { record });
+
+
+        var results = queryRecord.ToList();
+        return Ok(results);
+    }
+
     [HttpGet("{id}")]
     public IActionResult GetRecordById(int id)
     {
@@ -65,7 +79,6 @@ public class RecordController : ControllerBase
 
         return Ok(results);
     }
-
 
     // [HttpPatch("{id}")]
     // public IActionResult RenameRecord(int id, JsonPatchDocument<UpdateRecordDto> patch)
