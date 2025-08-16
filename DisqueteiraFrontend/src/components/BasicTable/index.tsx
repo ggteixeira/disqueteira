@@ -2,13 +2,13 @@ import { IRecords } from '@/types/records';
 import { capitalizeFirstLetter } from '@/utils/capitalize';
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 
-export default function BasicTable({ rows, excludedColumns }: { rows: IRecords[]; excludedColumns?: string[] }) {
+export default function BasicTable({ rows, hiddenColumns }: { rows: IRecords[]; hiddenColumns?: string[] }) {
   const pureColumns = Array.from(new Set(rows.flatMap((obj: IRecords) => Object.keys(obj))));
-  const filteredColumns = pureColumns.filter((col) => !excludedColumns?.includes(col));
+  const filteredColumns = pureColumns.filter((col) => !hiddenColumns?.includes(col));
 
   const columns = () => {
-    if (!excludedColumns) return pureColumns;
-    if (excludedColumns.length === 0) return pureColumns;
+    if (!hiddenColumns) return pureColumns;
+    if (hiddenColumns.length === 0) return pureColumns;
 
     return filteredColumns;
   };

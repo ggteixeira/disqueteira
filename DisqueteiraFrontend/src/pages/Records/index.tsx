@@ -6,7 +6,7 @@ import { useMemo } from 'react';
 const Records = () => {
   const { data: records, isLoading, isError, isFetched, error } = useGetRecords();
 
-  const excludedColumns = useMemo(() => {
+  const hiddenColumns = useMemo(() => {
     return ['artistId'];
   }, []);
 
@@ -25,7 +25,7 @@ const Records = () => {
       </Box>
       {isFetched && (
         <Box>
-          <BasicTable excludedColumns={excludedColumns} rows={records} />
+          <BasicTable hiddenColumns={hiddenColumns} rows={records} />
         </Box>
       )}
     </Container>
