@@ -42,12 +42,6 @@ public class RecordController : ControllerBase
     [HttpGet("/GetRecordsWithArtists")]
     public OkObjectResult GetRecordsWithArtists()
     {
-        var queryRecord = _context.Records
-            .Join(_context.Artists,
-                record => record.ArtistId,
-                artist => artist.Id,
-                (record, _) => new { record });
-
         var query = from records in _context.Records
             join artists in _context.Artists on records.ArtistId equals artists.Id
             select new
