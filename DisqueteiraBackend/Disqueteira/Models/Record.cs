@@ -2,14 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Disqueteira.Models;
 
-public class Record
+public class Record : BaseEntity
 {
-    [Key] [Required] public int Id { get; set; }
-
-    [Required] public string Name { get; set; }
-
     public int Year { get; set; }
-
     public int? ArtistId { get; set; }
     public virtual Artist Artist { get; set; }
 }
