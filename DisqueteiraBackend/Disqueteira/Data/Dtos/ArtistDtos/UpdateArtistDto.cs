@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Disqueteira.Data.Dtos;
+namespace Disqueteira.Data.Dtos.ArtistDtos;
 
 public class UpdateArtistDto
 {

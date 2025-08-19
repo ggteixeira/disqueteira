@@ -13,6 +13,15 @@ public class RecordProfile : Profile
         // CreateMap<UpdateRecordDto, Record>();
         // CreateMap<Record, UpdateRecordDto>();
         CreateMap<Record, ReadRecordDto>();
-        CreateMap<Record, RecordsWithArtistsDto>();
+        CreateMap<Record, RecordsWithArtistsDto>()
+            .ForMember(recordDto => recordDto.ArtistName,
+                opt =>
+                    opt.MapFrom(record => record.Artist.Name))
+            .ForMember(recordDto => recordDto.RecordName,
+                opt =>
+                    opt.MapFrom(record => record.Name))
+            .ForMember(recordDto => recordDto.RecordYear,
+                opt =>
+                    opt.MapFrom(record => record.Year));
     }
 }

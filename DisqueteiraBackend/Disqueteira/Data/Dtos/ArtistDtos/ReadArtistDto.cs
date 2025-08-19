@@ -1,4 +1,4 @@
-namespace Disqueteira.Data.Dtos;
+namespace Disqueteira.Data.Dtos.ArtistDtos;
 
 public class ReadArtistDto
 {

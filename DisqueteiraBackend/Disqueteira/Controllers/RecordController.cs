@@ -40,21 +40,24 @@ public class RecordController : ControllerBase
     }
 
     [HttpGet("/GetRecordsWithArtists")]
-    public OkObjectResult GetRecordsWithArtists()
+    public async Task<OkObjectResult> GetRecordsWithArtists()
     {
-        var query = from records in _context.Records
-            join artists in _context.Artists on records.ArtistId equals artists.Id
-            select new
-            {
-                records.Id,
-                RecordName = records.Name,
-                ArtistName = artists.Name,
-                RecordYear = records.Year
-            };
+        // var query = from records in _context.Records
+        //     join artists in _context.Artists on records.ArtistId equals artists.Id
+        //     select new 
+        //     {
+        //         records.Id,
+        //         RecordName = records.Name,
+        //         ArtistName = artists.Name,
+        //         RecordYear = records.Year
+        //     };
 
+        var queryDot = await _context.Records
+            .Include(record => record.Artist).ToListAsync();
 
-        var results = query.ToList();
-        return Ok(results);
+        // var results = query.ToList();
+        var resultsDto = _mapper.Map<List<RecordsWithArtistsDto>>(queryDot);
+        return Ok(resultsDto);
     }
 
     [HttpGet("{id}")]

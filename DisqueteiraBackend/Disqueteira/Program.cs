@@ -1,5 +1,7 @@
 using System.Reflection;
 using Disqueteira.Data;
+using Disqueteira.Models;
+using Disqueteira.Profiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -36,7 +38,10 @@ builder.Services.AddDbContext<DisqueteiraContext>(opts =>
     opts.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Configures Automapper (the newest version, with the latest syntax)
-builder.Services.AddAutoMapper(cfg => { }, typeof(Program).Assembly);
+// builder.Services.AddAutoMapper(cfg => { }, typeof(Program).Assembly);
+
+builder.Services.AddAutoMapper(cfg => { },
+    typeof(ArtistProfile), typeof(RecordProfile));
 
 
 // Add services to the container.

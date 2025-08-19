@@ -1,5 +1,5 @@
 using AutoMapper;
-using Disqueteira.Data.Dtos;
+using Disqueteira.Data.Dtos.ArtistDtos;
 using Disqueteira.Models;
 
 namespace Disqueteira.Profiles;

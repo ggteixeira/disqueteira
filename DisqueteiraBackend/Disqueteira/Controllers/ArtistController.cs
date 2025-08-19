@@ -1,6 +1,6 @@
 using AutoMapper;
 using Disqueteira.Data;
-using Disqueteira.Data.Dtos;
+using Disqueteira.Data.Dtos.ArtistDtos;
 using Disqueteira.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
