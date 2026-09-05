@@ -24,7 +24,7 @@ const Artists = () => {
         <Typography variant="h1">Artists</Typography>
       </Box>
       {isFetched && (
-        <Box>
+        <Box maxWidth="50%">
           <ArtistsTable hiddenColumns={hiddenColumns} rows={artists} />
         </Box>
       )}
