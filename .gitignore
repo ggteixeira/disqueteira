@@ -56,3 +56,4 @@ nunit-*.xml
 .idea/
 .DS_Store
 .vscode
+CLAUDE.md
